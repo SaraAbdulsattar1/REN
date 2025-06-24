@@ -1,0 +1,284 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+:root {
+  --green-primary: #2f7c58;
+  --green-accent: #91c499;
+  --gray-dark: #333;
+  --gray-light: #f5f5f5;
+  --action-color: #b4e11c;
+  --search-overlay-bg: rgba(15, 60, 35, 0.96);
+  --hover-bg: #e0f5e7;
+}
+
+/* الخط الأساسي */
+body {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* الشريط العلوي */
+.navbar {
+  background-color: white;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* الحاوية الداخلية */
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
+}
+
+/* الشعار */
+.navbar-left {
+  flex-shrink: 0;
+}
+
+/* روابط القائمة */
+.navbar-menu {
+  position: relative;
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+  flex: 1;
+  align-items: center;
+}
+
+/* كل رابط في القائمة */
+.menu-item {
+  font-size: 0.85rem;
+  color: var(--gray-dark);
+  font-weight: 500;
+  padding-bottom: 4px;
+  position: relative;
+  transition: color 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  color: var(--green-primary);
+}
+
+.menu-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: var(--green-primary);
+  transition: width 0.3s ease;
+}
+
+.menu-item:hover::after,
+.menu-item:focus::after {
+  width: 100%;
+}
+
+/* عناصر الجهة اليمنى */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* أيقونة البحث */
+.search-icon {
+  font-size: 1rem;
+  color: var(--green-primary);
+  cursor: pointer;
+}
+
+/* اللغة والعلم */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--gray-dark);
+  cursor: pointer;
+}
+.flag-icon {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.lang-code {
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+/* القائمة المنسدلة */
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: var(--gray-dark);
+  border-radius: 0.25rem;
+  transition: background 0.2s;
+  text-align: right;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-item:hover {
+  background-color: var(--hover-bg);
+  color: var(--green-primary);
+}
+
+.dropdown-container {
+  min-width: 220px;
+  background-color: white;
+  box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  animation: fadeDown 0.2s ease-in-out;
+}
+
+.dropdown-grid-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 280px;
+  z-index: 100;
+  animation: fadeDown 0.2s ease-in-out;
+}
+
+.dropdown-item {
+  background-color: #f9f9f9;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: var(--gray-dark);
+  border-radius: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+  text-align: right;
+  display: block;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.dropdown-item:hover {
+  background-color: var(--hover-bg);
+  color: var(--green-primary);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateY(0.5rem);
+  margin-top: 0.5rem;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  width: 100px;
+  z-index: 100;
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray-dark);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.lang-item:hover {
+  background-color: var(--hover-bg);
+}
+
+/* نافذة البحث المنبثقة */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--search-overlay-bg);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  animation: fadeDown 0.3s ease-in-out;
+}
+
+/* صندوق البحث */
+.search-box {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  padding: 2rem 1rem;
+}
+
+/* زر الإغلاق */
+.close-icon {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  font-size: 1.6rem;
+  color: var(--action-color);
+  cursor: pointer;
+}
+
+/* حاوية إدخال البحث */
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--action-color);
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background-color: transparent;
+}
+
+/* أيقونة البحث داخل النافذة */
+.search-icon-large {
+  font-size: 1.2rem;
+  color: var(--action-color);
+  margin-left: 0.75rem;
+}
+
+/* حقل الإدخال */
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1rem;
+  direction: rtl;
+}
+
+/* أنميشن ظهور ناعم */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
